@@ -8,6 +8,7 @@ using System.Text;
 
 namespace JwtTokenDemo.Controllers
 {
+    //Auth Controller
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -18,6 +19,7 @@ namespace JwtTokenDemo.Controllers
             this.Configuration = configuration;
         }
 
+        //Allowing Anonymous Calls
         [AllowAnonymous]
         [HttpPost]
         public IActionResult Auth([FromBody] User user)
@@ -32,7 +34,7 @@ namespace JwtTokenDemo.Controllers
                     var issuer = Configuration["Jwt:Issuer"];
                     var audience = Configuration["Jwt:Audience"];
                     var key = Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]);
-                    var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature);
+                    var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature); //SHA512
 
                     var subject = new ClaimsIdentity(new[]
                     {

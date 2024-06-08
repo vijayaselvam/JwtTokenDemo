@@ -19,7 +19,7 @@ namespace JwtTokenDemo.Controllers
             _logger = logger;
         }
 
-        [Authorize]
+        [Authorize] //Authorize Action 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
